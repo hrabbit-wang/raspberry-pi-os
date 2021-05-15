@@ -9,7 +9,7 @@ SRC_DIR = src
 run: all
 	qemu-system-arm -m 1024M -M raspi2 -serial stdio -kernel $(BUILD_DIR)/k-eric.elf
 
-all : k-eric.bin
+all : clean k-eric.bin
 
 clean :
 	rm -rf $(BUILD_DIR) *.img *.bin
