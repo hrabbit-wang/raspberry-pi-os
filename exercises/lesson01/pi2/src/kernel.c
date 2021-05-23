@@ -1,6 +1,7 @@
 #include "mini_uart.h"
 #include "uart01.h"
 #include "reset.h"
+#include "sprintf.h"
 
 #define BUF_SIZE 256
 
@@ -43,7 +44,7 @@ void kernel_main(void)
 	char command_buff[BUF_SIZE];
 	reset_buffer(command_buff, BUF_SIZE);
 	uart01_init();
-	uart01_send_string("Hello, world!\r\n");
+	printf("Hello World !!!\n");
 
 	while (1) {
 		char c = uart01_recv();
@@ -57,7 +58,7 @@ void kernel_main(void)
 			buf_cur_idx= 0u;
 
 			if (command) {
-				uart01_send_string("Reset System!\r\n");
+				printf("Reset System!\r\n");
 				delay(10);
 				reset_cpu();
 			}
